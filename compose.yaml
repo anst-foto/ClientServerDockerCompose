@@ -1,0 +1,19 @@
+﻿services:
+  server:
+    image: server
+    build:
+      context: .
+      dockerfile: Server/Dockerfile
+    ports:
+      - "5013:5013"
+      - "7033:7033"
+      - "8080:8080"
+
+  client:
+    image: client
+    build:
+      context: .
+      dockerfile: Client/Dockerfile
+    network_mode: host
+    depends_on:
+      - server
